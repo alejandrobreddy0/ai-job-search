@@ -17,17 +17,17 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 ### Identity
 - **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
+- **Location:** London, United Kingdom (open to hybrid, onsite in London, or 100% remote; no role requiring a personal vehicle)
 - **Languages:**
   | Language | Level |
   |----------|-------|
-  | [LANGUAGE] | [LEVEL] |
+  | English | Professional working proficiency |
   <!-- Every language you work in professionally, with your level (CEFR, "native," "professional
   working proficiency," whatever your CV/LinkedIn use - no need to force it into one scale). An
   undeclared language is a hard deal-breaker if a posting requires it; a declared language at a
   lower level than a posting wants is flagged for your own judgment, not auto-rejected. See
   04-job-evaluation.md's Language Gate. -->
-- **CV language:** [YOUR_CV_LANGUAGE] <!-- English unless your market expects otherwise; /setup asks -->
+- **CV language:** English <!-- English unless your market expects otherwise; /setup asks -->
 
 - **Status:** [YOUR_EMPLOYMENT_STATUS]
 - **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
@@ -76,16 +76,29 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 - [PASSION_1]
 - [PASSION_2]
 
+### Target Roles
+- **Titles:** Sales Development Representative (SDR), Business Development Representative (BDR), Inbound SDR, Outbound BDR, Inside Sales Representative
+- **Experience level:** Entry-level up to 2 years of outbound prospecting / cold-calling experience
+- **Base salary (strict):** £30,000-£35,000 base, excluding OTE/bonuses. Listings below £30,000 base are discarded.
+- **Scoring:** 1-10 Priority Score - see `04-job-evaluation.md`'s Target Filter Gate and Priority Score sections
+
 ### Target Sectors
 <!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- FinTech (top priority)
+- Artificial Intelligence / AI SaaS (top priority)
+- HR Tech / People Tech
+- MarTech (Marketing Technology)
+- Engineering / Technical Software
 
 ### Deal-breakers
 <!-- Hard constraints on job search. Language requirements are handled separately and
 automatically from your Languages table above - don't duplicate them here. -->
-- [DEALBREAKER_1]
-- [DEALBREAKER_2]
+- Account Executive (AE) or other closing roles
+- Base salary under £30,000 (excluding OTE/bonuses)
+- Commission-only roles
+- Field sales requiring a personal vehicle
+- Door-to-door / retail sales
+- Roles completely outside tech/SaaS sales
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)

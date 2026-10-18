@@ -46,6 +46,37 @@ Judge the level comparison the same way you judge everything else in this framew
 
 **Worked example:** a candidate whose Languages table lists Spanish (Native) and English (B1/B2). A posting requiring "fluent Russian" → **FAIL**, Russian isn't declared at all. A posting requiring "fluent English" → **FLAG**, English is declared but "fluent" plausibly exceeds B1/B2 — score and draft the application, but tell the candidate this posting's bar may be a stretch and let them decide. A posting requiring "conversational English" or unspecified English → **PASS**, B1/B2 clears a "conversational" bar cleanly.
 
+## Target Filter Gate — run before scoring
+
+Hard filters from CLAUDE.md's Target Roles and Deal-breakers. Like the gates above, a FAIL is not scored and not drafted; report it to the user with the quoted posting line rather than dropping it silently.
+
+| Check | FAIL (discard) | FLAG (score, but surface ⚠) |
+|-------|----------------|-----------------------------|
+| **Role type** | Account Executive or any closing role; door-to-door / retail sales; field sales requiring a personal vehicle | Hybrid SDR/AE "full-cycle" roles - check how much closing is expected |
+| **Base salary** (base only, never OTE/bonus) | Base stated below £30,000; commission-only | Base not stated ("competitive", OTE only) - verify before `/apply`; base above £35,000 - outside the target band, user decides |
+| **Sector** | Not a tech/SaaS sales role at all | Tech/SaaS but outside the five target sectors |
+| **Location** | Outside London and not remote | - |
+| **Experience** | Requires more than 2 years of outbound / closing experience | "2+ years" worded loosely - may be flexible |
+
+Only a salary stated as **base** counts for the salary check. A single figure labelled OTE, or a range with no base/OTE split, is unstated base → FLAG, never a pass and never a discard.
+
+## Priority Score (1-10) — SDR/BDR targeting
+
+After the gates pass, give every role a 1-10 Priority Score. This is the headline number for SDR/BDR triage; the 0-100 dimension scores below still run and feed `/rank`'s ordering and verdict bands.
+
+| Score | Criteria |
+|-------|----------|
+| **10** | Base exactly £35,000; AI or FinTech sector; modern sales stack (Salesforce, Outreach, ZoomInfo or equivalents named); clear progression path to AE |
+| **9** | Base £35,000 and AI or FinTech, missing one of: modern stack, AE progression |
+| **8** | Base £30,000-£34,999 in HR Tech, MarTech or Engineering software with a structured graduate/SDR training academy - or an AI/FinTech role in that base range |
+| **7** | Passes every gate, target sector, base in band, but no training academy, stack or progression signals - lowest shortlist tier |
+| **Discard (<7)** | Base below £30,000, or role completely outside tech/SaaS sales (these already FAIL the gate above) |
+
+Rules:
+- A Target Filter Gate **FLAG** caps the score at **7** until resolved (e.g. base not stated: once the base is confirmed in band, re-score).
+- Tech/SaaS roles outside the five target sectors cap at **7**.
+- Score only from what the posting actually says - an unmentioned stack or AE path is absent, not assumed.
+
 ## Scoring Dimensions
 
 Evaluate each job posting against these five dimensions:
@@ -107,9 +138,9 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Land an SDR/BDR role in a London tech/SaaS company (AI, FinTech, HR Tech, MarTech, Engineering software)
+- Build outbound prospecting skills on a modern sales stack (Salesforce, Outreach, ZoomInfo)
+- Progress from SDR/BDR to Account Executive
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
 - Tasks that energize: [YOUR_ENERGIZING_TASKS]
@@ -159,6 +190,8 @@ Present the evaluation as:
 | Career Alignment | XX/100 | [brief note] |
 
 **Overall Score: XX/100** (weighted average of scored dimensions)
+
+**Priority Score: X/10** (Target Filter Gate: PASS/FLAG - base salary £XX,XXX or "not stated"; sector; stack; AE progression)
 
 ### Verdict: [Strong Fit / Good Fit / Moderate Fit / Weak Fit / Poor Fit]
 

@@ -139,6 +139,8 @@ For each new job, do a rapid fit check (NOT the full evaluation from `04-job-eva
 
 **Language override:** before assigning a match level, check the posting against `04-job-evaluation.md`'s Language Gate (a required language you haven't declared at all in your CLAUDE.md Languages table). A required language that's entirely undeclared overrides skill fit: mark it **Low** regardless of how well the skills align, and name it in the highlight bullets so it isn't buried under an otherwise-good-looking match. A **declared** language at a requirement that reads higher than your declared level is *not* an override — score fit normally, but add a red-flag bullet under that job's highlights (Step 5) quoting the posting's requirement next to your declared level, so the gap is visible without being auto-downgraded.
 
+**Target filter override:** check each posting against `04-job-evaluation.md`'s Target Filter Gate. A FAIL (base under £30,000, commission-only, AE/closing, door-to-door/retail, vehicle-required field sales, non-tech) is stored as `skipped` and not presented; a FLAG (e.g. base not stated) is presented with a ⚠ bullet naming it.
+
 ### Step 4: Deduplicate & Store
 
 1. Derive each entry's key with the helper, never by slugifying in the moment:
