@@ -11,14 +11,18 @@ The `site:` query templates in this file are the **WebSearch fallback** — for 
 
 ## Search Sites
 
+**Allowed sources only: LinkedIn and tech-sales job sites.** Never search, present or store results from Indeed, Reed, Totaljobs, CWJobs, Glassdoor, SimplyHired, Jooble, Milkround or other general aggregators.
+
 Primary:
 - **linkedin.com/jobs** - LinkedIn job listings (filter: London, United Kingdom; include Remote UK); also covered by `linkedin-search` CLI
-- **uk.indeed.com** - largest general UK board
-- **otta.com / welcometothejungle.com** - tech/startup-focused, lists base salaries
-- **cwjobs.co.uk / totaljobs.com** - UK boards with salary filters
 
-Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies (Greenhouse, Lever, Ashby and Workable boards: `site:boards.greenhouse.io`, `site:jobs.lever.co`, `site:jobs.ashbyhq.com`)
+Tech-sales job sites:
+- **welcometothejungle.com** (formerly Otta) - tech/startup roles, usually lists base salary
+- **thisisprime.co.uk** - tech sales recruiter (SDR/BDR focus)
+- **spheredigitalrecruitment.com** - digital/SaaS sales recruiter
+- **builtinlondon.uk** - London tech company jobs
+
+Company career pages (ATS boards): `site:boards.greenhouse.io`, `site:job-boards.greenhouse.io`, `site:jobs.lever.co`, `site:jobs.ashbyhq.com`
 
 ## Query Categories
 
@@ -44,7 +48,7 @@ site:jobs.lever.co ("SDR" OR "BDR") London FinTech
 site:linkedin.com/jobs "SDR" ("HR Tech" OR "People Tech" OR HRIS) London
 site:linkedin.com/jobs "Business Development Representative" (MarTech OR "marketing technology") London
 site:linkedin.com/jobs "Sales Development Representative" ("engineering software" OR CAD OR "technical software") London
-site:uk.indeed.com "SDR academy" OR "graduate SDR" London SaaS
+site:thisisprime.co.uk "graduate SDR" OR "SDR academy" London
 ```
 
 ### Priority 3: Inside Sales & Title Variants
@@ -54,7 +58,7 @@ Same function, different titles.
 ```
 site:linkedin.com/jobs "Inside Sales Representative" SaaS London
 site:linkedin.com/jobs ("Inbound SDR" OR "Outbound BDR") London
-site:uk.indeed.com ("Sales Development" OR "Lead Generation Representative" OR "Business Development Associate") SaaS London
+site:welcometothejungle.com ("Sales Development" OR "Business Development Representative") London
 ```
 
 ### Priority 4: Remote UK SDR/BDR
@@ -63,7 +67,7 @@ Wider net for fully remote roles.
 
 ```
 site:linkedin.com/jobs ("SDR" OR "BDR") SaaS "Remote" "United Kingdom"
-site:otta.com "Sales Development Representative" Remote UK
+site:welcometothejungle.com "Sales Development Representative" Remote UK
 ```
 
 ## Location Filter
