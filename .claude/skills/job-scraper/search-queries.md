@@ -1,6 +1,5 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
 
 ## Installed portal CLIs (primary for `/scrape`)
 
@@ -12,69 +11,76 @@ The `site:` query templates in this file are the **WebSearch fallback** — for 
 
 ## Search Sites
 
-Primary (your market's job boards - scaffold one with `/add-portal`):
-- **[YOUR_JOB_BOARD]** - your market's largest general job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: [YOUR_COUNTRY] / [YOUR_CITY]); also covered by `linkedin-search` CLI
-- **[YOUR_INDUSTRY_JOB_BOARD]** - a niche/industry board for your field (optional)
-- **[YOUR_ADDITIONAL_JOB_BOARD]** - another major board for your market (optional)
+**Allowed sources only: LinkedIn and tech-sales job sites.** Never search, present or store results from Indeed, Reed, Totaljobs, CWJobs, Glassdoor, SimplyHired, Jooble, Milkround or other general aggregators.
 
-Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+Primary:
+- **linkedin.com/jobs** - LinkedIn job listings (filter: London, United Kingdom; include Remote UK); also covered by `linkedin-search` CLI
+
+Tech-sales job sites:
+- **welcometothejungle.com** (formerly Otta) - tech/startup roles, usually lists base salary
+- **thisisprime.co.uk** - tech sales recruiter (SDR/BDR focus)
+- **spheredigitalrecruitment.com** - digital/SaaS sales recruiter
+- **builtinlondon.uk** - London tech company jobs
+
+Company career pages (ATS boards): `site:boards.greenhouse.io`, `site:job-boards.greenhouse.io`, `site:jobs.lever.co`, `site:jobs.ashbyhq.com`
 
 ## Query Categories
 
-Queries are grouped by priority. Write **each category in every language from your Languages table** (see Language scope above). Combine each query with your location terms (e.g. your city, region, or metro area) where the site supports it.
+Combine each query with London / "Remote UK". Salary floor: where a portal supports a salary filter, set **£30,000 minimum** (base). Exclude titles containing "Account Executive", "Closer", "Field Sales" where the portal supports negative keywords.
 
-**Organize by function, not job title.** The same underlying work carries different titles across companies and markets (a "Data Scientist" role at one employer may be posted as "Insights Analyst" or "Data Consultant" at another). Name each priority category after the function it covers, and list several plausible job titles as query variants within that category rather than betting an entire priority tier on one exact title string.
+### Priority 1: Outbound / Inbound Prospecting in AI & FinTech
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
-
-These match your strongest and most desired career direction.
+Highest Priority Score potential (10/10 band).
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_2]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_COUNTRY]
+site:linkedin.com/jobs "Sales Development Representative" (AI OR "artificial intelligence") London
+site:linkedin.com/jobs "Business Development Representative" FinTech London
+site:boards.greenhouse.io ("SDR" OR "BDR") (AI OR FinTech) London
+site:jobs.ashbyhq.com ("Sales Development" OR "Business Development Representative") London
+site:jobs.lever.co ("SDR" OR "BDR") London FinTech
 ```
 
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
+### Priority 2: SDR/BDR in HR Tech, MarTech & Engineering Software
 
-These match your domain expertise.
-
-```
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
-```
-
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
-
-Adjacent roles you could pivot into.
+8/10 band - look for structured SDR training academies.
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
+site:linkedin.com/jobs "SDR" ("HR Tech" OR "People Tech" OR HRIS) London
+site:linkedin.com/jobs "Business Development Representative" (MarTech OR "marketing technology") London
+site:linkedin.com/jobs "Sales Development Representative" ("engineering software" OR CAD OR "technical software") London
+site:thisisprime.co.uk "graduate SDR" OR "SDR academy" London
 ```
 
-### Priority 4: Broader Technical / Consulting
+### Priority 3: Inside Sales & Title Variants
 
-Wider net for general technical roles.
+Same function, different titles.
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:linkedin.com/jobs "Inside Sales Representative" SaaS London
+site:linkedin.com/jobs ("Inbound SDR" OR "Outbound BDR") London
+site:welcometothejungle.com ("Sales Development" OR "Business Development Representative") London
+```
+
+### Priority 4: Remote UK SDR/BDR
+
+Wider net for fully remote roles.
+
+```
+site:linkedin.com/jobs ("SDR" OR "BDR") SaaS "Remote" "United Kingdom"
+site:welcometothejungle.com "Sales Development Representative" Remote UK
 ```
 
 ## Location Filter
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+Acceptable:
+- London (onsite or hybrid) - any zone reachable by public transport
+- 100% remote, UK-based
+- Outside London requiring regular office attendance: FAIL
+- Field sales requiring a personal vehicle: FAIL
+
+## Salary & Role Filter
+
+Apply `04-job-evaluation.md`'s Target Filter Gate before quick-fit: discard base under £30,000, commission-only, AE/closing roles, door-to-door/retail and field sales. Base salary means base - never OTE. Postings with no stated base stay in, flagged "base not stated".
 
 ## Language Filter
 
